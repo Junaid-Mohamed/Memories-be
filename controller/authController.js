@@ -16,6 +16,7 @@ export const googleAuthenticate = (req,res) => {
 
 export const googleRedirect = async(req,res) => {
     const {code} = req.query;
+    console.log("Inside redirect URL")
     if(!code){
         return res.status(400).send('Authorization code not provided.')
        } 
