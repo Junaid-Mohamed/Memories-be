@@ -11,11 +11,11 @@ const JWT_SECRET = process.env.JWT_SECRET
 
 export function setSecureCookie(res,token){
     res.cookie('access_token',token)
-    //     {
-    //     httpOnly: true,              // Prevents JavaScript access (ideal for security)
-    //     secure: false,               // Set to false if testing on http (localhost)
-    //     sameSite: 'lax',             // Use 'lax' for same-site or 'none' for cross-origin
-    // })
+        {
+        httpOnly: true,              // Prevents JavaScript access (ideal for security)
+        secure: true,               // Set to false if testing on http (localhost)
+        sameSite: 'none',             // Use 'lax' for same-site or 'none' for cross-origin
+    })
     return res;
 }
 
