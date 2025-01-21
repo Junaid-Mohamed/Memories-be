@@ -34,15 +34,16 @@ export async function verifyToken(req,res,next){
     if(!req.cookies.access_token){
         return res.status(403).json({error:"Access denied."})
     }
-    try{
-        const token = req.cookies.access_token;
-        const {userId} = await jwt.verify(token,JWT_SECRET);
-        req.userId = userId;
-        next();
-    }catch(error){
-        console.log("Error verifying token",error);
-        throw Error("Error verifying token",error)
-    }
+    next()
+    // try{
+    //     const token = req.cookies.access_token;
+    //     const {userId} = await jwt.verify(token,JWT_SECRET);
+    //     req.userId = userId;
+    //     next();
+    // }catch(error){
+    //     console.log("Error verifying token",error);
+    //     throw Error("Error verifying token",error)
+    // }
 }
 
 //  get current date helper function

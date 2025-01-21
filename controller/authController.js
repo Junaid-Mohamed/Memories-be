@@ -37,21 +37,21 @@ export const googleRedirect = async(req,res) => {
     },
     )
     access_token = tokenResponse.data.access_token;
-    const googleUserDataResponse = await axios.get('https://www.googleapis.com/oauth2/v2/userinfo', 
-        {
-            headers: {
-                Authorization: `Bearer ${access_token}`
-            }
-        }
-    )
+    // const googleUserDataResponse = await axios.get('https://www.googleapis.com/oauth2/v2/userinfo', 
+    //     {
+    //         headers: {
+    //             Authorization: `Bearer ${access_token}`
+    //         }
+    //     }
+    // )
     
-    const {id,email,name} = googleUserDataResponse.data;
-    const token = await createUser(id,email,name);
-    setSecureCookie(res,token);
+    // const {id,email,name} = googleUserDataResponse.data;
+    // const token = await createUser(id,email,name);
+    setSecureCookie(res,access_token);
     // res.json({user:googleUserDataResponse.data});
     // res.send("Success")
     // console.log(res.getHeaders())
-    return res.redirect(`https://memories-fe-pi.vercel.app/login`)
+    return res.redirect(`https://memories-fe-pi.vercel.app`)
     }catch(error){
         console.error(error);
         res.status(500).json({error})
