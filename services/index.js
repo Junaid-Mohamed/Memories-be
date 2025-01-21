@@ -32,6 +32,7 @@ export async function createToken(userId){
 }
 
 export async function verifyToken(req,res,next){
+    console.log("inside verify token",req.cookies.access_token);
     if(!req.cookies.access_token){
         return res.status(403).json({error:"Access denied."})
     }

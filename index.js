@@ -10,6 +10,7 @@ import userRoutes from "./routes/userRoutes.js";
 import { verifyToken } from "./services/index.js";
 
 const app = express();
+const PORT = process.env.PORT || 4000;
 
 app.use(express.json());
 app.use(cors({
@@ -25,8 +26,8 @@ app.get("/",(req,res)=>{
     res.send("Hi world")
 })
 
-app.use('/api/auth', authRoutes)
+
 app.use('/api/albums',verifyToken ,albumRoutes)
 app.use('/api/users',verifyToken ,userRoutes)
 
-app.listen(3000,console.log("App listening on port 3000"))
+app.listen(PORT,console.log("App listening on port 3000"))
