@@ -10,6 +10,7 @@ const JWT_SECRET = process.env.JWT_SECRET
 //  helper function
 
 export function setSecureCookie(res,token){
+    console.log('Token recieved inside setCookie ',token)
     res.cookie('access_token',token,
         {
             httpOnly: true,

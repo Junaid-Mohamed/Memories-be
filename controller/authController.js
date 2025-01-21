@@ -47,6 +47,7 @@ export const googleRedirect = async(req,res) => {
     
     // const {id,email,name} = googleUserDataResponse.data;
     // const token = await createUser(id,email,name);
+    console.log('access_token ',access_token);
     setSecureCookie(res,access_token);
     // res.json({user:googleUserDataResponse.data});
     // res.send("Success")
