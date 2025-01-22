@@ -11,9 +11,9 @@ const JWT_SECRET = process.env.JWT_SECRET
 
 export function setSecureCookie(res,token){
     res.cookie('access_token',token,{
-        httpOnly: true,
+        // httpOnly: true,
         secure: true,
-        sameSite: "none",
+        sameSite: 'None',
         maxAge: 24 * 60 * 60 * 1000,
     })
     return res;
