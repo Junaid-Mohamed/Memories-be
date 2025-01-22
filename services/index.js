@@ -10,7 +10,6 @@ const JWT_SECRET = process.env.JWT_SECRET
 //  helper function
 
 export function setSecureCookie(res,token){
-    console.log('Token recieved inside setCookie ',token)
     res.cookie('access_token',token,
         {
             httpOnly: true,
@@ -32,20 +31,18 @@ export async function createToken(userId){
 }
 
 export async function verifyToken(req,res,next){
-    console.log("inside verify token",req.cookies.access_token);
     if(!req.cookies.access_token){
         return res.status(403).json({error:"Access denied."})
     }
-    next()
-    // try{
-    //     const token = req.cookies.access_token;
-    //     const {userId} = await jwt.verify(token,JWT_SECRET);
-    //     req.userId = userId;
-    //     next();
-    // }catch(error){
-    //     console.log("Error verifying token",error);
-    //     throw Error("Error verifying token",error)
-    // }
+    try{
+        const token = req.cookies.access_token;
+        const {userId} = await jwt.verify(token,JWT_SECRET);
+        req.userId = userId;
+        next();
+    }catch(error){
+        console.log("Error verifying token",error);
+        throw Error("Error verifying token",error)
+    }
 }
 
 //  get current date helper function
